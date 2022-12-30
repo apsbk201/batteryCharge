@@ -2,6 +2,29 @@
 import tkinter as tk
 import psutil
 import time
+import platform
+import os
+# Check OS
+global os_windows
+os_windows = False
+if platform.platform() == "Windows":
+    import windsound
+    os_windows = True
+
+def sound():
+    if os_windows:
+        duration = 400 # ms
+        freq = 4440 # Hz
+        windsound.Beep(freq, duration)
+        time.sleep(0.1)
+        windsound.Beep(freq, duration)
+    else:
+        duration = 0.4 # secouds
+        freq =4440 # Hz
+        os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq))
+        time.sleep(0.1)
+        os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq))
+
 # function returning time in hh:mm:ss
 def convertTime(seconds):
     minutes, seconds = divmod(seconds, 60)
@@ -23,6 +46,7 @@ def readBatt():
 def appnotify(batt_percent, time_left):
     global app
     click = False
+    sound()
     app = tk.Tk()
     app.geometry("240x120")
     app.title("Please Charge")
