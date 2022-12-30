@@ -7,17 +7,17 @@ import os
 # Check OS
 global os_windows
 os_windows = False
-if platform.platform() == "Windows":
-    import windsound
+if platform.system() == "Windows":
+    import winsound
     os_windows = True
 
 def sound():
     if os_windows:
-        duration = 400 # ms
-        freq = 4440 # Hz
-        windsound.Beep(freq, duration)
-        time.sleep(0.1)
-        windsound.Beep(freq, duration)
+        duration = 1000 # ms
+        freq = 3000 # Hz
+        winsound.Beep(freq, duration)
+        #time.sleep(0.1)
+        #winsound.Beep(freq, duration)
     else:
         duration = 0.4 # secouds
         freq =4440 # Hz
